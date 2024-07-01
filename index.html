@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Chipi</title>
+</head>
+<style>
+    .navbar{
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 10vh;
+        width: 100vw;
+        background-color: black;
+        color: white;
+        position: absolute;
+    }
+    body{
+        background-color: #262626;
+        margin: 0;
+    }
+    .img{
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 90%;
+    }
+    .divbotones{
+        width: 30%;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+    }
+    .botonesnavbar{
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 700;
+        background-color: transparent;
+        color: white;
+        border: none;
+        transition: ease-in-out 0.2s;
+    }
+    .botonesnavbar:hover{
+        border-bottom: 0.5vh solid #fff;
+        transition: ease-out 0.1s;
+    }
+    .bodyfake{
+        height: 100vh;
+        background-image: url(img/wallpaper.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+<body>
+
+    <div class="navbar">
+        <img class="img" src="img/logo.jpg" alt="logo">
+        <div class="divbotones">
+            <button class="botonesnavbar">
+                HOME
+            </button>
+            <button class="botonesnavbar">
+                CONTACT
+            </button>
+            <button class="botonesnavbar">
+                WORK
+            </button>
+        </div>
+    </div>
+
+    <div class="bodyfake">
+        
+    </div>
+</body>
+</html>
