@@ -12,18 +12,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Cambiar estilo del navbar al hacer scroll
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-        navbar.style.boxShadow = '0 1px 2px 0 rgba(0, 0, 0, 0.05)';
-    }
-});
-
 // Animaciones de entrada cuando los elementos entran en vista
 const observerOptions = {
     threshold: 0.1,
@@ -148,17 +136,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Parallax effect para el hero
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const parallax = document.querySelector('.hero');
-    if (parallax) {
-        const speed = scrolled * 0.5;
-        parallax.style.transform = `translateY(${speed}px)`;
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('img[data-src]');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+    
+    images.forEach(img => imageObserver.observe(img));
 });
 
-// Contador animado para estadísticas (si decides agregar estadísticas más tarde)
+// Función para scroll suave hacia arriba
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Contador animado para estadísticas
 function animateCounter(element, target, duration = 2000) {
     const start = parseInt(element.textContent) || 0;
     const increment = (target - start) / (duration / 16);
@@ -202,47 +205,6 @@ document.querySelectorAll('.nav-link').forEach(link => {
     });
 });
 
-// Lazy loading para imágenes
-document.addEventListener('DOMContentLoaded', () => {
-    const images = document.querySelectorAll('img[data-src]');
-    
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-    
-    images.forEach(img => imageObserver.observe(img));
-});
-
-// Función para mostrar/ocultar el botón de volver arriba
-window.addEventListener('scroll', () => {
-    const scrollToTopBtn = document.querySelector('.scroll-to-top');
-    
-    if (window.pageYOffset > 300) {
-        if (scrollToTopBtn) {
-            scrollToTopBtn.style.display = 'flex';
-        }
-    } else {
-        if (scrollToTopBtn) {
-            scrollToTopBtn.style.display = 'none';
-        }
-    }
-});
-
-// Función para scroll suave hacia arriba
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-}
-
 // Agregar botón de volver arriba dinámicamente
 document.addEventListener('DOMContentLoaded', () => {
     const scrollToTopBtn = document.createElement('button');
@@ -258,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
         height: 50px;
         border: none;
         border-radius: 50%;
-        background: linear-gradient(135deg, #6366f1, #ec4899);
+        background: linear-gradient(135deg, #3b82f6, #10b981);
         color: white;
         font-size: 1.2rem;
         cursor: pointer;
@@ -279,6 +241,126 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     document.body.appendChild(scrollToTopBtn);
+});
+
+// Funcionalidad del cambio de tema
+class ThemeManager {
+    constructor() {
+        this.themeToggle = document.getElementById('theme-toggle');
+        this.themeIcon = document.getElementById('theme-icon');
+        this.currentTheme = localStorage.getItem('theme') || 'light';
+        
+        this.init();
+    }
+    
+    init() {
+        // Aplicar el tema guardado
+        this.applyTheme(this.currentTheme);
+        
+        // Agregar event listener al botón
+        if (this.themeToggle) {
+            this.themeToggle.addEventListener('click', () => this.toggleTheme());
+        }
+    }
+    
+    applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        this.currentTheme = theme;
+        
+        // Actualizar el icono
+        if (this.themeIcon) {
+            this.themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+        
+        // Guardar en localStorage
+        localStorage.setItem('theme', theme);
+        
+        // Actualizar el navbar según el scroll y el tema
+        this.updateNavbarStyle();
+    }
+    
+    toggleTheme() {
+        const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+        this.applyTheme(newTheme);
+        
+        // Agregar efecto visual al botón
+        if (this.themeToggle) {
+            this.themeToggle.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                this.themeToggle.style.transform = 'scale(1)';
+            }, 150);
+        }
+    }
+    
+    updateNavbarStyle() {
+        const navbar = document.querySelector('.navbar');
+        if (!navbar) return;
+        
+        if (window.scrollY > 100) {
+            if (this.currentTheme === 'dark') {
+                navbar.style.background = 'rgba(31, 41, 55, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            }
+            navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+        } else {
+            if (this.currentTheme === 'dark') {
+                navbar.style.background = 'rgba(31, 41, 55, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+            navbar.style.boxShadow = '0 1px 2px 0 rgba(0, 0, 0, 0.05)';
+        }
+    }
+}
+
+// Inicializar el gestor de temas
+document.addEventListener('DOMContentLoaded', () => {
+    new ThemeManager();
+});
+
+// Actualizar el evento de scroll existente para tener en cuenta el tema
+window.addEventListener('scroll', () => {
+    // Lógica existente del scroll...
+    const navbar = document.querySelector('.navbar');
+    const themeManager = new ThemeManager();
+    
+    if (window.scrollY > 100) {
+        if (document.documentElement.getAttribute('data-theme') === 'dark') {
+            navbar.style.background = 'rgba(31, 41, 55, 0.98)';
+        } else {
+            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+        }
+        navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+    } else {
+        if (document.documentElement.getAttribute('data-theme') === 'dark') {
+            navbar.style.background = 'rgba(31, 41, 55, 0.95)';
+        } else {
+            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        }
+        navbar.style.boxShadow = '0 1px 2px 0 rgba(0, 0, 0, 0.05)';
+    }
+    
+    // Resto de la lógica de scroll existente...
+    const scrollToTopBtn = document.querySelector('.scroll-to-top');
+    
+    if (window.pageYOffset > 300) {
+        if (scrollToTopBtn) {
+            scrollToTopBtn.style.display = 'flex';
+        }
+    } else {
+        if (scrollToTopBtn) {
+            scrollToTopBtn.style.display = 'none';
+        }
+    }
+    
+    // Parallax effect
+    const scrolled = window.pageYOffset;
+    const parallax = document.querySelector('.hero');
+    if (parallax) {
+        const speed = scrolled * 0.5;
+        parallax.style.transform = `translateY(${speed}px)`;
+    }
 });
 
 console.log('🚀 Portafolio de Chipi cargado correctamente!');
