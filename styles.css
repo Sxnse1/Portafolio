@@ -89,6 +89,11 @@ body {
 .logo {
     height: 40px;
     width: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 .nav-links {

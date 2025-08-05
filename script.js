@@ -272,6 +272,12 @@ class ThemeManager {
             this.themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
         }
         
+        // Cambiar el logo según el tema
+        const logo = document.querySelector('.logo');
+        if (logo) {
+            logo.src = theme === 'dark' ? 'img/logo-dark.svg' : 'img/logo.svg';
+        }
+        
         // Guardar en localStorage
         localStorage.setItem('theme', theme);
         
