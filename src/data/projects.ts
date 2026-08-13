@@ -7,14 +7,14 @@ import type { Project } from "@/types";
  */
 export const projects: Project[] = [
   {
-    id: "proyecto-1",
-    title: "Proyecto 1",
+    id: "starteducation",
+    title: "StartEducation",
     description:
-      "Descripción corta de ejemplo: qué problema resuelve este proyecto y qué lo hace interesante desde el punto de vista técnico.",
-    stack: ["Node.js", "Express", "PostgreSQL"],
-    image: "/images/projects/placeholder-1.svg",
-    repoUrl: "https://github.com/tu-usuario/proyecto-1",
-    demoUrl: undefined,
+      "Academia en línea de barbería profesional para México y LATAM: cursos en video, seguimiento de progreso por módulos y un flujo pensado para que el estudiante genere ingresos reales desde el primer mes.",
+    stack: ["Node.js", "Express", "Handlebars", "PostgreSQL", "CSS", "Heroku"],
+    image: "/images/projects/starteducation.svg", // PLACEHOLDER: reemplaza con screenshot real del sitio
+    repoUrl: "https://github.com/Sxnse1/StartEducation",
+    demoUrl: "https://www.starteducation.page/",
     featured: true,
   },
   {
