@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="dc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d9488"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#dc)"/>
+  <rect x="60" y="60" width="680" height="380" rx="16" fill="#ffffff" fill-opacity="0.08"/>
+  <text x="50%" y="48%" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="38" fill="#ffffff">DESCONECTADO</text>
+  <text x="50%" y="58%" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#ffffff" fill-opacity="0.7">TPV offline-first — reemplaza con screenshot real</text>
+</svg>

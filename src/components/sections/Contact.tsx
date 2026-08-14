@@ -29,7 +29,7 @@ const DIRECT_LINKS = [
     icon: FaLinkedin,
   },
   {
-    href: "https://github.com/tu-usuario", // PLACEHOLDER: tu GitHub real
+    href: "https://github.com/Sxnse1", // PLACEHOLDER: tu GitHub real
     label: "GitHub",
     icon: FaGithub,
   },

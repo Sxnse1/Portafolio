@@ -116,13 +116,10 @@ Reinicia `npm run dev` después de crear el archivo.
 
 | Qué | Dónde | Detalle |
 |---|---|---|
-| CV en PDF | `public/cv/alejandro-davila-cv.pdf` | Enlazado desde el botón "Descargar CV" en [Hero.tsx](src/components/sections/Hero.tsx) |
 | Imagen Open Graph | `public/images/og-image.png` (1200×630px) | Referenciada en [layout.tsx](src/app/layout.tsx) para previews de redes sociales |
-| Proyectos reales | [`src/data/projects.ts`](src/data/projects.ts) | "Proyecto 2" y "Proyecto 3" siguen con contenido de ejemplo — reemplázalos, incluyendo el objeto `caseStudy` (problema/enfoque/arquitectura/retos/resultado) que alimenta su página `/proyectos/[id]` |
-| Screenshots de proyectos | `public/images/projects/` | Sustituye los SVG placeholder por capturas reales (o un video corto mudo para el hover, campo `video` del tipo `Project`) |
-| Link de GitHub | [Footer.tsx](src/components/layout/Footer.tsx), [Contact.tsx](src/components/sections/Contact.tsx), [projects.ts](src/data/projects.ts) | Reemplaza `https://github.com/tu-usuario` |
-| Link de LinkedIn | [Footer.tsx](src/components/layout/Footer.tsx), [Contact.tsx](src/components/sections/Contact.tsx) | Reemplaza `https://linkedin.com/in/tu-usuario` |
-| Dominio real | [layout.tsx](src/app/layout.tsx) | Actualiza la constante `siteUrl` con tu dominio de Vercel una vez desplegado |
+| Proyecto 3 | [`src/data/projects.ts`](src/data/projects.ts) | Sigue con contenido de ejemplo — reemplázalo, incluyendo el objeto `caseStudy` (problema/enfoque/arquitectura/retos/resultado) que alimenta su página `/proyectos/[id]` |
+| Screenshots de proyectos | `public/images/projects/` | Sustituye los SVG placeholder (StartEducation, DESCONECTADO, Proyecto 3) por capturas reales (o un video corto mudo para el hover, campo `video` del tipo `Project`) |
+| Link de LinkedIn | [Footer.tsx](src/components/layout/Footer.tsx), [Contact.tsx](src/components/sections/Contact.tsx) | Reemplaza `https://linkedin.com/in/tu-usuario` con tu URL real de LinkedIn |
 
 Agregar un proyecto nuevo es tan simple como añadir un objeto al array en `projects.ts` — no requiere tocar el JSX.
 

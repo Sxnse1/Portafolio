@@ -100,7 +100,7 @@ export function CommandPalette() {
           <CommandSeparator />
 
           <CommandGroup heading="Enlaces">
-            <CommandItem onSelect={() => openExternal("https://github.com/tu-usuario")}>
+            <CommandItem onSelect={() => openExternal("https://github.com/Sxnse1")}>
               <FaGithub />
               GitHub
             </CommandItem>

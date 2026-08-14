@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = "https://alejandrodavila.dev"; // PLACEHOLDER: reemplaza con tu dominio real al desplegar
+const siteUrl = "https://portafolio.starteducation.page";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

@@ -35,9 +35,23 @@ export function TimelineItem({ item, delay = 0, isLast }: TimelineItemProps) {
           </div>
           <p className="mt-0.5 text-sm text-primary">{item.organization}</p>
           <p className="mt-0.5 text-xs text-muted-foreground">{item.period}</p>
-          <p className="mt-3 max-w-xl text-sm text-muted-foreground">
-            {item.description}
-          </p>
+          {item.highlights && item.highlights.length > 0 ? (
+            <ul className="mt-3 flex max-w-xl flex-col gap-2">
+              {item.highlights.map((point) => (
+                <li
+                  key={point}
+                  className="flex gap-2.5 text-sm text-muted-foreground"
+                >
+                  <span className="mt-2 size-1 shrink-0 rounded-full bg-primary/60" />
+                  {point}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="mt-3 max-w-xl text-sm text-muted-foreground">
+              {item.description}
+            </p>
+          )}
         </div>
       </div>
     </ScrollReveal>

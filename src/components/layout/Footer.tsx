@@ -4,7 +4,7 @@ import { VisitCounter } from "@/components/VisitCounter";
 
 const SOCIAL_LINKS = [
   {
-    href: "https://github.com/tu-usuario",
+    href: "https://github.com/Sxnse1",
     label: "GitHub",
     icon: FaGithub,
   },
