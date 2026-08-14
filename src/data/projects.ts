@@ -13,7 +13,7 @@ export const projects: Project[] = [
     description:
       "Academia en línea de barbería profesional para México y LATAM: cursos en video, seguimiento de progreso por módulos y un flujo pensado para que el estudiante genere ingresos reales desde el primer mes.",
     stack: ["Node.js", "Express", "Handlebars", "PostgreSQL", "CSS", "Heroku"],
-    image: "/images/projects/starteducation.svg", // PLACEHOLDER: reemplaza con screenshot real del sitio
+    image: "/images/projects/starteducation.png",
     repoUrl: "https://github.com/Sxnse1/StartEducation",
     demoUrl: "https://www.starteducation.page/",
     featured: true,

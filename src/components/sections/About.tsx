@@ -1,6 +1,12 @@
 import { Database, Server, WifiOff } from "lucide-react";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Section } from "@/components/layout/Section";
+import { Badge } from "@/components/ui/badge";
+
+const LANGUAGES = [
+  { name: "Español", level: "Nativo" },
+  { name: "Inglés", level: "B1 · TOEFL ITP 500" },
+];
 
 const INTERESTS = [
   {
@@ -44,6 +50,17 @@ export function About() {
             modelado de datos cuidadoso y atención a los detalles que
             importan cuando el software maneja procesos legales.
           </p>
+
+          <div className="mt-6 flex flex-wrap items-center gap-2">
+            <span className="text-xs font-medium text-muted-foreground">
+              Idiomas
+            </span>
+            {LANGUAGES.map((lang) => (
+              <Badge key={lang.name} variant="secondary" className="font-normal">
+                {lang.name} — {lang.level}
+              </Badge>
+            ))}
+          </div>
         </ScrollReveal>
 
         <div className="flex flex-col gap-6">

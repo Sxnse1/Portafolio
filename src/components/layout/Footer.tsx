@@ -9,7 +9,7 @@ const SOCIAL_LINKS = [
     icon: FaGithub,
   },
   {
-    href: "https://linkedin.com/in/tu-usuario",
+    href: "https://www.linkedin.com/in/c%C3%A9sar-alejandro-d%C3%A1vila-reyna-039ab824b/",
     label: "LinkedIn",
     icon: FaLinkedin,
   },

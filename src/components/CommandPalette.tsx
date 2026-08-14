@@ -104,7 +104,7 @@ export function CommandPalette() {
               <FaGithub />
               GitHub
             </CommandItem>
-            <CommandItem onSelect={() => openExternal("https://linkedin.com/in/tu-usuario")}>
+            <CommandItem onSelect={() => openExternal("https://www.linkedin.com/in/c%C3%A9sar-alejandro-d%C3%A1vila-reyna-039ab824b/")}>
               <FaLinkedin />
               LinkedIn
             </CommandItem>

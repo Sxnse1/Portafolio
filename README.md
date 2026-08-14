@@ -118,8 +118,7 @@ Reinicia `npm run dev` después de crear el archivo.
 |---|---|---|
 | Imagen Open Graph | `public/images/og-image.png` (1200×630px) | Referenciada en [layout.tsx](src/app/layout.tsx) para previews de redes sociales |
 | Proyecto 3 | [`src/data/projects.ts`](src/data/projects.ts) | Sigue con contenido de ejemplo — reemplázalo, incluyendo el objeto `caseStudy` (problema/enfoque/arquitectura/retos/resultado) que alimenta su página `/proyectos/[id]` |
-| Screenshots de proyectos | `public/images/projects/` | Sustituye los SVG placeholder (StartEducation, DESCONECTADO, Proyecto 3) por capturas reales (o un video corto mudo para el hover, campo `video` del tipo `Project`) |
-| Link de LinkedIn | [Footer.tsx](src/components/layout/Footer.tsx), [Contact.tsx](src/components/sections/Contact.tsx) | Reemplaza `https://linkedin.com/in/tu-usuario` con tu URL real de LinkedIn |
+| Screenshots de DESCONECTADO / Proyecto 3 | `public/images/projects/` | Sustituye los SVG placeholder por capturas reales (o un video corto mudo para el hover, campo `video` del tipo `Project`) |
 
 Agregar un proyecto nuevo es tan simple como añadir un objeto al array en `projects.ts` — no requiere tocar el JSX.
 

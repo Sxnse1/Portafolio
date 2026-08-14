@@ -24,12 +24,12 @@ const DIRECT_LINKS = [
     icon: Mail,
   },
   {
-    href: "https://linkedin.com/in/tu-usuario", // PLACEHOLDER: tu LinkedIn real
+    href: "https://www.linkedin.com/in/c%C3%A9sar-alejandro-d%C3%A1vila-reyna-039ab824b/",
     label: "LinkedIn",
     icon: FaLinkedin,
   },
   {
-    href: "https://github.com/Sxnse1", // PLACEHOLDER: tu GitHub real
+    href: "https://github.com/Sxnse1",
     label: "GitHub",
     icon: FaGithub,
   },
