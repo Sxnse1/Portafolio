@@ -1,21 +1,22 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { href: "#sobre-mi", label: "Sobre mí" },
-  { href: "#proyectos", label: "Proyectos" },
-  { href: "#habilidades", label: "Habilidades" },
-  { href: "#experiencia", label: "Experiencia" },
-  { href: "#contacto", label: "Contacto" },
+  { href: "/proyectos", label: "Proyectos" },
+  { href: "/sobre-mi", label: "Sobre mí" },
+  { href: "/contacto", label: "Contacto" },
 ];
 
 export function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = React.useState(false);
   const [open, setOpen] = React.useState(false);
 
@@ -25,6 +26,9 @@ export function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <header
@@ -36,31 +40,51 @@ export function Navbar() {
       )}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <a
-          href="#inicio"
+        <Link
+          href="/"
           className="font-semibold tracking-tight text-foreground"
         >
           Alejandro Dávila
           <span className="text-primary">.</span>
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
-              <a
+              <Link
                 href={link.href}
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className={cn(
+                  "text-sm transition-colors hover:text-foreground",
+                  isActive(link.href)
+                    ? "font-medium text-foreground"
+                    : "text-muted-foreground"
+                )}
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
 
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() =>
+              document.dispatchEvent(
+                new KeyboardEvent("keydown", { key: "k", metaKey: true })
+              )
+            }
+            className="hidden items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground md:flex"
+            aria-label="Abrir paleta de comandos"
+          >
+            <Search className="size-3.5" />
+            <span className="rounded border border-border px-1.5 py-0.5 font-mono">
+              ⌘K
+            </span>
+          </button>
           <ThemeToggle />
           <Button asChild size="sm" className="hidden md:inline-flex">
-            <a href="#contacto">Contáctame</a>
+            <Link href="/contacto">Contáctame</Link>
           </Button>
           <Button
             variant="ghost"
@@ -84,13 +108,18 @@ export function Navbar() {
         >
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
-              <a
+              <Link
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="block py-2.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className={cn(
+                  "block py-2.5 text-sm transition-colors hover:text-foreground",
+                  isActive(link.href)
+                    ? "font-medium text-foreground"
+                    : "text-muted-foreground"
+                )}
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </motion.ul>

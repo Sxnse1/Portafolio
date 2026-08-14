@@ -1,4 +1,18 @@
+export interface ProjectCaseStudy {
+  /** Qué problema real resolvía este proyecto. */
+  problem: string;
+  /** Cómo se abordó la solución. */
+  approach: string;
+  /** Decisiones técnicas / piezas de arquitectura, como bullets. */
+  architecture: string[];
+  /** Retos técnicos concretos que se resolvieron. */
+  challenges: string[];
+  /** Resultado / impacto del proyecto. */
+  result: string;
+}
+
 export interface Project {
+  /** También se usa como slug de ruta en /proyectos/[id]. */
   id: string;
   title: string;
   description: string;
@@ -10,6 +24,9 @@ export interface Project {
   repoUrl?: string;
   demoUrl?: string;
   featured?: boolean;
+  year?: string;
+  role?: string;
+  caseStudy?: ProjectCaseStudy;
 }
 
 export type SkillCategory =

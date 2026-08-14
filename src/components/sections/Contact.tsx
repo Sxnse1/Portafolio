@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { Section } from "@/components/layout/Section";
 import { getSupabaseBrowser } from "@/lib/supabase/client";
 import { contactFormSchema, type ContactFormValues } from "@/lib/validations";
 
@@ -67,14 +68,10 @@ export function Contact() {
   };
 
   return (
-    <section id="contacto" className="mx-auto max-w-6xl px-6 py-28">
+    <Section id="contacto" className="pt-16">
       <div className="grid gap-16 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:gap-12">
         <ScrollReveal>
-          <span className="text-sm font-medium text-primary">Contacto</span>
-          <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-tighter sm:text-4xl">
-            Hablemos
-          </h2>
-          <p className="mt-4 max-w-sm text-muted-foreground">
+          <p className="max-w-sm text-muted-foreground">
             ¿Tienes una vacante, un proyecto o simplemente quieres saludar?
             Escríbeme por el formulario o directamente por estos medios.
           </p>
@@ -177,6 +174,6 @@ export function Contact() {
           </form>
         </ScrollReveal>
       </div>
-    </section>
+    </Section>
   );
 }

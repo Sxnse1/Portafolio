@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { CommandPalette } from "@/components/CommandPalette";
 
 const geistSans = Inter({
   variable: "--font-geist-sans",
@@ -71,6 +72,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="es"
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
@@ -83,6 +85,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
+          <CommandPalette />
         </ThemeProvider>
       </body>
     </html>

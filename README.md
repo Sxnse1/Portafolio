@@ -6,37 +6,60 @@ Portafolio personal construido con Next.js (App Router), TypeScript, Tailwind CS
 
 - **Next.js 16** (App Router) + TypeScript
 - **Tailwind CSS v4** + **shadcn/ui**
-- **Framer Motion** para animaciones
+- **Framer Motion** para animaciones y transiciones de página
+- **cmdk** para la paleta de comandos (⌘K)
 - **next-themes** para modo claro/oscuro con persistencia
 - **Supabase** para el formulario de contacto y el contador de visitas
 - **react-hook-form** + **zod** para validación de formularios
+
+## Arquitectura del sitio
+
+Es un sitio multi-ruta, no una landing de una sola página:
+
+| Ruta | Contenido |
+|---|---|
+| `/` | Hero + tira de tecnologías + proyectos destacados + CTA — el "trailer" |
+| `/proyectos` | Catálogo completo de proyectos, filtrable por stack |
+| `/proyectos/[id]` | Case study de cada proyecto: problema, enfoque, arquitectura, retos, resultado |
+| `/sobre-mi` | Bio completa, intereses, habilidades por categoría y experiencia |
+| `/contacto` | Formulario + links directos |
+
+Navegación global vía **⌘K / Ctrl+K** (paleta de comandos): saltar a cualquier página, proyecto, red social, descargar el CV o cambiar de tema sin tocar el mouse.
 
 ## Estructura del proyecto
 
 ```
 src/
   app/
-    layout.tsx          # metadata SEO, fuentes, ThemeProvider, Navbar/Footer
-    page.tsx             # ensambla las secciones de la página
-    globals.css           # tema (colores, radios) y utilidades
-    api/visits/route.ts   # incrementa el contador de visitas (Supabase, server-side)
+    layout.tsx              # metadata SEO, fuentes, ThemeProvider, Navbar/Footer/CommandPalette
+    template.tsx             # transición fade/slide entre rutas (Framer Motion)
+    page.tsx                  # home
+    proyectos/page.tsx         # catálogo filtrable
+    proyectos/[id]/page.tsx     # case study (generateStaticParams + generateMetadata)
+    sobre-mi/page.tsx            # bio + skills + experiencia
+    contacto/page.tsx             # formulario de contacto
+    globals.css                    # tema (colores, radios) y utilidades
+    api/visits/route.ts             # incrementa el contador de visitas (Supabase, server-side)
   components/
-    layout/               # Navbar, Footer
-    sections/              # Hero, About, Projects, Skills, Experience, Contact
-    ui/                    # componentes shadcn/ui
-    ProjectCard.tsx        # card reutilizable de proyecto (imagen o video en hover)
-    ScrollReveal.tsx       # wrapper de animación de scroll
+    layout/                # Navbar, Footer, Container, Section, PageHeader
+    sections/               # Hero, About, FeaturedProjects, Skills, Experience, Contact
+    ui/                     # componentes shadcn/ui (incluye Command)
+    CommandPalette.tsx       # paleta de comandos global (⌘K)
+    ProjectCard.tsx           # card reutilizable (imagen o video en hover, click → case study)
+    ProjectsGrid.tsx           # grid filtrable usado en /proyectos
+    TechMarquee.tsx             # tira de íconos con scroll infinito
+    ScrollReveal.tsx             # wrapper de animación de scroll
     TimelineItem.tsx
     ThemeToggle.tsx
     VisitCounter.tsx
   data/
-    projects.ts            # array tipado de proyectos — edita aquí para agregar/quitar
+    projects.ts            # array tipado — cada proyecto incluye su `caseStudy`
     skills.ts
     experience.ts
   lib/
     supabase/               # clientes de Supabase (browser y server)
     validations.ts           # schema zod del formulario de contacto
-  types/index.ts             # tipos compartidos
+  types/index.ts             # tipos compartidos (Project, ProjectCaseStudy, etc.)
 supabase/
   schema.sql                 # SQL para crear las tablas y políticas RLS
 ```
@@ -95,7 +118,7 @@ Reinicia `npm run dev` después de crear el archivo.
 |---|---|---|
 | CV en PDF | `public/cv/alejandro-davila-cv.pdf` | Enlazado desde el botón "Descargar CV" en [Hero.tsx](src/components/sections/Hero.tsx) |
 | Imagen Open Graph | `public/images/og-image.png` (1200×630px) | Referenciada en [layout.tsx](src/app/layout.tsx) para previews de redes sociales |
-| Proyectos reales | [`src/data/projects.ts`](src/data/projects.ts) | Reemplaza los 3 proyectos placeholder; agrega screenshots/videos en `public/images/projects/` |
+| Proyectos reales | [`src/data/projects.ts`](src/data/projects.ts) | "Proyecto 2" y "Proyecto 3" siguen con contenido de ejemplo — reemplázalos, incluyendo el objeto `caseStudy` (problema/enfoque/arquitectura/retos/resultado) que alimenta su página `/proyectos/[id]` |
 | Screenshots de proyectos | `public/images/projects/` | Sustituye los SVG placeholder por capturas reales (o un video corto mudo para el hover, campo `video` del tipo `Project`) |
 | Link de GitHub | [Footer.tsx](src/components/layout/Footer.tsx), [Contact.tsx](src/components/sections/Contact.tsx), [projects.ts](src/data/projects.ts) | Reemplaza `https://github.com/tu-usuario` |
 | Link de LinkedIn | [Footer.tsx](src/components/layout/Footer.tsx), [Contact.tsx](src/components/sections/Contact.tsx) | Reemplaza `https://linkedin.com/in/tu-usuario` |

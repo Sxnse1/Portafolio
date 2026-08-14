@@ -14,6 +14,7 @@ import {
 import { FaJava, FaNodeJs, FaReact, FaAngular, FaGitAlt } from "react-icons/fa";
 import { TbApi, TbPlugConnected, TbDatabase } from "react-icons/tb";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { Section } from "@/components/layout/Section";
 import { skills } from "@/data/skills";
 import type { SkillCategory } from "@/types";
 
@@ -47,7 +48,7 @@ const CATEGORY_ORDER: SkillCategory[] = [
 
 export function Skills() {
   return (
-    <section id="habilidades" className="mx-auto max-w-6xl px-6 py-28">
+    <Section id="habilidades">
       <ScrollReveal>
         <span className="text-sm font-medium text-primary">
           Habilidades técnicas
@@ -87,6 +88,6 @@ export function Skills() {
           );
         })}
       </div>
-    </section>
+    </Section>
   );
 }

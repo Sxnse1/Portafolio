@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowDown, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -72,13 +73,13 @@ export function Hero() {
 
         <motion.div variants={item} className="mt-10 flex flex-wrap gap-4">
           <Button asChild size="lg" className="group">
-            <a href="#proyectos">
+            <Link href="/proyectos">
               Ver proyectos
               <ArrowDown className="size-4 transition-transform group-hover:translate-y-0.5" />
-            </a>
+            </Link>
           </Button>
           <Button asChild size="lg" variant="outline">
-            <a href="#contacto">Contáctame</a>
+            <Link href="/contacto">Contáctame</Link>
           </Button>
           <Button asChild size="lg" variant="ghost">
             {/* PLACEHOLDER: coloca tu CV real en /public/cv/alejandro-davila-cv.pdf */}

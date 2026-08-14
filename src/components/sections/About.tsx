@@ -1,5 +1,6 @@
 import { Database, Server, WifiOff } from "lucide-react";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { Section } from "@/components/layout/Section";
 
 const INTERESTS = [
   {
@@ -24,11 +25,10 @@ const INTERESTS = [
 
 export function About() {
   return (
-    <section id="sobre-mi" className="mx-auto max-w-6xl px-6 py-28">
+    <Section id="sobre-mi">
       <div className="grid gap-16 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-12">
         <ScrollReveal>
-          <span className="text-sm font-medium text-primary">Sobre mí</span>
-          <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-tighter sm:text-4xl">
+          <h2 className="text-balance text-3xl font-extrabold tracking-tighter sm:text-4xl">
             Egresado de Ingeniería en Sistemas, formado en proyectos reales.
           </h2>
           <p className="mt-6 text-muted-foreground">
@@ -64,6 +64,6 @@ export function About() {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
