@@ -45,21 +45,14 @@ export const metadata: Metadata = {
     description:
       "Portafolio de Alejandro Dávila, desarrollador backend/full-stack especializado en Node.js, bases de datos y arquitecturas offline-first.",
     siteName: "Alejandro Dávila",
-    images: [
-      {
-        url: "/images/og-image.png", // PLACEHOLDER: imagen de 1200x630 para previews en redes sociales
-        width: 1200,
-        height: 630,
-        alt: "Alejandro Dávila — Desarrollador Backend / Full-Stack",
-      },
-    ],
+    // La imagen (1200x630) se genera automáticamente desde opengraph-image.tsx.
   },
   twitter: {
     card: "summary_large_image",
     title: "Alejandro Dávila — Desarrollador Backend / Full-Stack",
     description:
       "Portafolio de Alejandro Dávila, desarrollador backend/full-stack.",
-    images: ["/images/og-image.png"],
+    // La imagen se genera automáticamente desde twitter-image.tsx (reexporta opengraph-image.tsx).
   },
   robots: {
     index: true,
