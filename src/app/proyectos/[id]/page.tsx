@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/Container";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { LivePreviewFrame } from "@/components/LivePreviewFrame";
 import { projects } from "@/data/projects";
 
 interface ProjectPageProps {
@@ -110,17 +111,34 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </div>
 
       <Container className="py-16 sm:py-20">
-        {project.image && (
+        {(project.image || project.demoUrl) && (
           <ScrollReveal>
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border bg-muted">
-              <Image
-                src={project.image}
-                alt={`Vista previa de ${project.title}`}
-                fill
-                sizes="(max-width: 1200px) 100vw, 1152px"
-                className="object-cover"
-                priority
-              />
+              {project.image && (
+                <Image
+                  src={project.image}
+                  alt={`Vista previa de ${project.title}`}
+                  fill
+                  sizes="(max-width: 1200px) 100vw, 1152px"
+                  className="object-cover"
+                  priority
+                />
+              )}
+              {project.demoUrl && (
+                <>
+                  <LivePreviewFrame
+                    url={project.demoUrl}
+                    title={project.title}
+                    scale={0.5}
+                    interactive
+                    className="absolute inset-0"
+                  />
+                  <span className="pointer-events-none absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-background/90 px-3 py-1 text-xs font-medium text-foreground shadow-sm backdrop-blur">
+                    <span className="size-1.5 rounded-full bg-primary" />
+                    Vista previa en vivo
+                  </span>
+                </>
+              )}
             </div>
           </ScrollReveal>
         )}

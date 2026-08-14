@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import { Badge } from "@/components/ui/badge";
+import { LivePreviewFrame } from "@/components/LivePreviewFrame";
 import type { Project } from "@/types";
 
 interface ProjectCardProps {
@@ -18,13 +19,19 @@ interface ProjectCardProps {
 export function ProjectCard({ project, priority }: ProjectCardProps) {
   const { id, title, description, stack, image, video, repoUrl, demoUrl } = project;
   const videoRef = React.useRef<HTMLVideoElement>(null);
+  const [previewActive, setPreviewActive] = React.useState(false);
 
-  const handleEnter = () => videoRef.current?.play();
+  const handleEnter = () => {
+    videoRef.current?.play();
+    setPreviewActive(true);
+  };
   const handleLeave = () => {
     const el = videoRef.current;
-    if (!el) return;
-    el.pause();
-    el.currentTime = 0;
+    if (el) {
+      el.pause();
+      el.currentTime = 0;
+    }
+    setPreviewActive(false);
   };
 
   return (
@@ -37,7 +44,21 @@ export function ProjectCard({ project, priority }: ProjectCardProps) {
     >
       <Link href={`/proyectos/${id}`} className="flex flex-1 flex-col">
         <div className="relative aspect-[16/10] w-full overflow-hidden bg-muted">
-          {/* Loop mudo en hover si se provee `video`; si no, se muestra la imagen estática. */}
+          {/* Base: imagen estática, siempre presente como fallback. */}
+          {image && (
+            <Image
+              src={image}
+              alt={`Vista previa de ${title}`}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority={priority}
+              className={`object-cover transition-transform duration-500 group-hover:scale-105 ${
+                video || demoUrl ? "group-hover:opacity-0" : ""
+              }`}
+            />
+          )}
+
+          {/* En hover: loop mudo de video si se provee, si no, un iframe en vivo de la demo. */}
           {video && (
             <video
               ref={videoRef}
@@ -49,17 +70,10 @@ export function ProjectCard({ project, priority }: ProjectCardProps) {
               className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             />
           )}
-          {image && (
-            <Image
-              src={image}
-              alt={`Vista previa de ${title}`}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              priority={priority}
-              className={`object-cover transition-transform duration-500 group-hover:scale-105 ${
-                video ? "group-hover:opacity-0" : ""
-              }`}
-            />
+          {!video && demoUrl && previewActive && (
+            <div className="absolute inset-0 animate-in fade-in duration-300">
+              <LivePreviewFrame url={demoUrl} title={title} scale={0.28} />
+            </div>
           )}
         </div>
 
