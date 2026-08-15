@@ -1,10 +1,9 @@
 import type { Project } from "@/types";
 
 /**
- * PLACEHOLDER: "Proyecto 3" sigue con contenido de ejemplo — reemplázalo con
- * tu siguiente proyecto real (incluyendo el objeto `caseStudy`, que alimenta
- * su página /proyectos/[id]). Agrega la imagen en /public/images/projects/
- * y actualiza image/video/repoUrl/demoUrl.
+ * Agregar/quitar un proyecto es solo editar este array — no requiere tocar el JSX.
+ * Cada proyecto puede incluir un `caseStudy` (problema/enfoque/arquitectura/retos/
+ * resultado) que alimenta su página /proyectos/[id].
  */
 export const projects: Project[] = [
   {
@@ -77,29 +76,39 @@ export const projects: Project[] = [
     },
   },
   {
-    id: "proyecto-3",
-    title: "Proyecto 3",
+    id: "cryptoia",
+    title: "CryptoIA",
     description:
-      "Descripción corta de ejemplo: qué problema resuelve este proyecto y qué lo hace interesante desde el punto de vista técnico.",
-    stack: ["Java", "SQL Server", "REST APIs"],
-    image: "/images/projects/placeholder-3.svg",
-    repoUrl: "https://github.com/Sxnse1/proyecto-3",
-    demoUrl: undefined,
-    featured: false,
-    year: "2025",
-    role: "Rol en el proyecto",
+      "Plataforma de análisis de criptomonedas con IA: detecta oportunidades de trading a corto plazo con un score interno basado en indicadores técnicos, backtesting histórico y análisis contextual generado con OpenAI.",
+    stack: ["Next.js", "TypeScript", "OpenAI API", "Binance API", "Supabase", "Tailwind CSS"],
+    image: "/images/projects/cryptoia.svg", // PLACEHOLDER: reemplaza con screenshot real del sitio
+    repoUrl: "https://github.com/Sxnse1/CryptoIA",
+    demoUrl: "https://cryptoia.starteducation.page/",
+    // Sin X-Frame-Options ni CSP frame-ancestors en el deploy — confirmado con curl -I.
+    embeddable: true,
+    featured: true,
+    year: "2026",
+    role: "Desarrollador full-stack",
+    // NOTA: borrador escrito a partir del repo/README/package.json — revisa y ajusta los detalles técnicos.
     caseStudy: {
-      problem: "PLACEHOLDER: describe el problema real que resolvía este proyecto.",
-      approach: "PLACEHOLDER: cómo abordaste la solución técnica.",
+      problem:
+        "Encontrar oportunidades de trading a corto plazo entre miles de criptomonedas implica cruzar manualmente indicadores técnicos y datos de mercado en tiempo real — lento, propenso a error y sin un criterio objetivo consistente para comparar una moneda contra otra.",
+      approach:
+        "Construí CryptoIA como una app Next.js (App Router) que consume datos de mercado en tiempo real de Binance (vía endpoints públicos) y los enriquece con rankings de CoinMarketCap, calcula un score interno a partir de indicadores técnicos y backtesting histórico, y usa la API de OpenAI para generar análisis contextual sobre ese score — dejando siempre explícito que es una herramienta de apoyo, no asesoría financiera.",
       architecture: [
-        "PLACEHOLDER: pieza de arquitectura o decisión técnica clave",
-        "PLACEHOLDER: otra decisión relevante (base de datos, infraestructura, etc.)",
+        "API routes de Next.js desplegadas en Vercel, consumiendo Binance API (mercado en tiempo real) y CoinMarketCap (rankings)",
+        "Motor de scoring basado en la librería technicalindicators + backtesting histórico",
+        "Integración con OpenAI para generar análisis en lenguaje natural sobre los scores calculados",
+        "Supabase para persistir alertas, favoritos e historial de usuario, con fallback a memoria local en desarrollo si falta alguna credencial",
+        "Visualización de datos con Recharts y Lightweight Charts (gráficos de velas)",
       ],
       challenges: [
-        "PLACEHOLDER: un reto técnico concreto que resolviste",
-        "PLACEHOLDER: otro reto relevante",
+        "Diseñar un score objetivo a partir de múltiples indicadores técnicos sin sobreajustarlo a datos históricos",
+        "Integrar varias APIs externas (Binance, CoinMarketCap, OpenAI, Supabase) con degradación agraciada cuando falta alguna credencial, para que el proyecto siga siendo desarrollable localmente sin todas las keys",
+        "Comunicar con claridad, tanto en el producto como en el código, que el sistema es apoyo analítico y no asesoría financiera — un límite de responsabilidad importante en un producto de este tipo",
       ],
-      result: "PLACEHOLDER: resultado o impacto medible del proyecto.",
+      result:
+        "MVP funcional desplegado en Vercel (cryptoia.starteducation.page), con autenticación de usuarios, generación de señales de mercado y respaldo de indicadores técnicos más backtesting histórico.",
     },
   },
 ];
