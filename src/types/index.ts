@@ -23,6 +23,13 @@ export interface Project {
   video?: string;
   repoUrl?: string;
   demoUrl?: string;
+  /**
+   * Pon esto en `true` solo si confirmaste que `demoUrl` permite ser
+   * embebido en un iframe (sin header `X-Frame-Options`/CSP `frame-ancestors`
+   * que lo bloquee). Por defecto es `false` — sin esto, muchos sitios (el
+   * tuyo incluido) rechazan la conexión y se ve roto en vez de la demo.
+   */
+  embeddable?: boolean;
   featured?: boolean;
   year?: string;
   role?: string;

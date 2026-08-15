@@ -124,7 +124,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   priority
                 />
               )}
-              {project.demoUrl && (
+              {project.demoUrl && project.embeddable && (
                 <>
                   <LivePreviewFrame
                     url={project.demoUrl}

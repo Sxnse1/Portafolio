@@ -16,6 +16,8 @@ export const projects: Project[] = [
     image: "/images/projects/starteducation.png",
     repoUrl: "https://github.com/Sxnse1/StartEducation",
     demoUrl: "https://www.starteducation.page/",
+    // CSP frame-ancestors en StartEducation ahora permite este dominio — confirmado con curl -I.
+    embeddable: true,
     featured: true,
     year: "2026",
     role: "Desarrollador full-stack (solo)",

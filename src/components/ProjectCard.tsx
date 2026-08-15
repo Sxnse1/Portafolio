@@ -17,7 +17,8 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, priority }: ProjectCardProps) {
-  const { id, title, description, stack, image, video, repoUrl, demoUrl } = project;
+  const { id, title, description, stack, image, video, repoUrl, demoUrl, embeddable } = project;
+  const showLivePreview = !video && embeddable && demoUrl;
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [previewActive, setPreviewActive] = React.useState(false);
 
@@ -53,7 +54,7 @@ export function ProjectCard({ project, priority }: ProjectCardProps) {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               priority={priority}
               className={`object-cover transition-transform duration-500 group-hover:scale-105 ${
-                video || demoUrl ? "group-hover:opacity-0" : ""
+                video || showLivePreview ? "group-hover:opacity-0" : ""
               }`}
             />
           )}
@@ -70,7 +71,7 @@ export function ProjectCard({ project, priority }: ProjectCardProps) {
               className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             />
           )}
-          {!video && demoUrl && previewActive && (
+          {showLivePreview && demoUrl && previewActive && (
             <div className="absolute inset-0 animate-in fade-in duration-300">
               <LivePreviewFrame url={demoUrl} title={title} scale={0.28} />
             </div>
